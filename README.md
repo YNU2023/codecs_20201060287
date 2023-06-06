@@ -1,11 +1,22 @@
 # 软件工程实习 实验
 20201060287 李昂
 
+## 目录
+
+- [一、项目说明](#一项目说明)
+- [二、文件说明](#二文件说明)
+  - [2.1 embddings_process.py文件](#21-embddings_processpy文件)
+  - [2.2 getSru2Vec.py文件](#22-getSru2Vecpy文件)
+  - [2.3 process_single_corpus.py文件](#23-process_single_corpuspy文件)
+  - [2.4 python_structured.py文件](#24-python_structuredpy文件)
+  - [2.5 sqlang_structured.py文件](#25-sqlang_structuredpy文件)
+- [三、写在后面](#三写在后面)
+
 ## 一、项目说明
 
 该项目为云南大学 2023Spring 软件工程课程提供的demo代码，用于学习软件的组织结构。
 
-由于仅需结构性调整，不要求代码运行，为了方便进行Git管理，在此删去了数据集，调整后的项目结构如下：
+由于仅需结构性调整而不要求代码运行，为了方便进行Git管理，在此删去了数据集，调整后的项目结构如下：
 ```
 ├── data_preprocessing  
 │   └── hnn_processing  
