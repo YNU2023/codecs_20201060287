@@ -5,11 +5,11 @@
 
 - [一、项目说明](#一项目说明)
 - [二、文件说明](#二文件说明)
-  - [2.1 embddings_process.py文件](#21-embddings_processpy文件)
-  - [2.2 getSru2Vec.py文件](#22-getSru2Vecpy文件)
-  - [2.3 process_single_corpus.py文件](#23-process_single_corpuspy文件)
-  - [2.4 python_structured.py文件](#24-python_structuredpy文件)
-  - [2.5 sqlang_structured.py文件](#25-sqlang_structuredpy文件)
+  - [2.1 getSru2Vec.py文件](###getSru2Vecpy文件)
+  - [2.2 embddings_process.py文件](###embddings_processpy文件)
+  - [2.3 process_single_corpus.py文件](###process_single_corpuspy文件)
+  - [2.4 python_structured.py文件](###python_structuredpy文件)
+  - [2.5 sqlang_structured.py文件](###sqlang_structuredpy文件)
 - [三、写在后面](#三写在后面)
 
 ## 一、项目说明
@@ -33,6 +33,50 @@
 源文件是代码组织方式较为杂乱随性，在此使用了面向对象的方式进行了重构，使得代码更加清晰易懂。
 
 ## 二、文件说明
+
+### getSru2Vec.py文件
+
+#### 1. 概述
+该文件实现了一个并行分词类 `ParallelTokenizer`，用于解析结构化数据。它依赖于其他模块 `python_structured` 和 `sqlang_structured`，用于解析不同类型的数据。该类支持 Python 和 SQLang 两种语言的解析。
+
+#### 2. 导入依赖库
+该文件导入了以下依赖库：
+- `pickle`：用于读取和写入 pickle 文件
+- `sys`：提供对 Python 解释器的访问和控制
+- `multiprocessing.Pool`：用于实现并行任务的线程池
+
+#### 3. 导入自定义模块
+该文件导入了两个自定义模块：
+- `python_structured`：Python 结构化数据解析模块
+- `sqlang_structured`：SQLang 结构化数据解析模块
+
+#### 4. 并行分词类 `ParallelTokenizer`
+该类用于并行解析结构化数据。它具有以下属性和方法：
+
+##### 属性
+- `lang_type`：解析的语言类型，可以是 'python' 或 'sqlang'
+- `split_num`：每次并行解析的数据量
+- `source_path`：源数据路径
+- `save_path`：解析后数据保存路径
+
+##### 方法
+- `__init__(self, lang_type, split_num, source_path, save_path)`：初始化方法，设置类属性的初始值
+- `multipro_python_query(self, data_list)`：Python 查询解析方法
+- `multipro_python_code(self, data_list)`：Python 代码解析方法
+- `multipro_python_context(self, data_list)`：Python 上下文解析方法
+- `multipro_sqlang_query(self, data_list)`：SQLang 查询解析方法
+- `multipro_sqlang_code(self, data_list)`：SQLang 代码解析方法
+- `multipro_sqlang_context(self, data_list)`：SQLang 上下文解析方法
+- `parse_python(self, python_list)`：解析 Python 数据的方法
+- `parse_sqlang(self, sqlang_list)`：解析 SQLang 数据的方法
+- `process_data(self)`：数据处理方法，实现数据解析和保存
+
+#### 5. 示例运行
+文件末尾的示例代码演示了如何使用 `ParallelTokenizer` 类进行数据解析。通过设置相关参数，选择解析的语言类型、并行解析的数据量，以及源数据和保存路径。然后调用 `process_data` 方法开始解析和保存数据。
+
+请根据实际需求修改示例代码中的参数，并确保导入的自定义模块和相关文件存在。
+
+---
 
 ### embddings_process.py文件
 
@@ -81,50 +125,6 @@
 
 #### 4. 示例运行
 文件末尾的示例代码演示了如何使用上述类进行词向量加载、字典构建和数据序列化的操作。请根据实际需求修改示例代码中的参数，确保相关文件存在，并按照需要的功能调用相应的方法。
-
----
-
-### getSru2Vec.py文件
-
-#### 1. 概述
-该文件实现了一个并行分词类 `ParallelTokenizer`，用于解析结构化数据。它依赖于其他模块 `python_structured` 和 `sqlang_structured`，用于解析不同类型的数据。该类支持 Python 和 SQLang 两种语言的解析。
-
-#### 2. 导入依赖库
-该文件导入了以下依赖库：
-- `pickle`：用于读取和写入 pickle 文件
-- `sys`：提供对 Python 解释器的访问和控制
-- `multiprocessing.Pool`：用于实现并行任务的线程池
-
-#### 3. 导入自定义模块
-该文件导入了两个自定义模块：
-- `python_structured`：Python 结构化数据解析模块
-- `sqlang_structured`：SQLang 结构化数据解析模块
-
-#### 4. 并行分词类 `ParallelTokenizer`
-该类用于并行解析结构化数据。它具有以下属性和方法：
-
-##### 属性
-- `lang_type`：解析的语言类型，可以是 'python' 或 'sqlang'
-- `split_num`：每次并行解析的数据量
-- `source_path`：源数据路径
-- `save_path`：解析后数据保存路径
-
-##### 方法
-- `__init__(self, lang_type, split_num, source_path, save_path)`：初始化方法，设置类属性的初始值
-- `multipro_python_query(self, data_list)`：Python 查询解析方法
-- `multipro_python_code(self, data_list)`：Python 代码解析方法
-- `multipro_python_context(self, data_list)`：Python 上下文解析方法
-- `multipro_sqlang_query(self, data_list)`：SQLang 查询解析方法
-- `multipro_sqlang_code(self, data_list)`：SQLang 代码解析方法
-- `multipro_sqlang_context(self, data_list)`：SQLang 上下文解析方法
-- `parse_python(self, python_list)`：解析 Python 数据的方法
-- `parse_sqlang(self, sqlang_list)`：解析 SQLang 数据的方法
-- `process_data(self)`：数据处理方法，实现数据解析和保存
-
-#### 5. 示例运行
-文件末尾的示例代码演示了如何使用 `ParallelTokenizer` 类进行数据解析。通过设置相关参数，选择解析的语言类型、并行解析的数据量，以及源数据和保存路径。然后调用 `process_data` 方法开始解析和保存数据。
-
-请根据实际需求修改示例代码中的参数，并确保导入的自定义模块和相关文件存在。
 
 ---
 
