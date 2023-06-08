@@ -10,6 +10,7 @@
   - [2.3 process_single_corpus.py文件](#process_single_corpuspy文件)
   - [2.4 python_structured.py文件](#python_structuredpy文件)
   - [2.5 sqlang_structured.py文件](#sqlang_structuredpy文件)
+  - [2.6 word_dict.py文件](#word_dictpy文件)
 - [三、后记](#三后记)
 
 ## 一、项目说明
