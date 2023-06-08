@@ -37,7 +37,7 @@
 ### getSru2Vec.py文件
 
 #### 1. 概述
-该文件实现了一个并行分词类 `ParallelTokenizer`，用于解析结构化数据。它依赖于其他模块 `python_structured` 和 `sqlang_structured`，用于解析不同类型的数据。该类支持 Python 和 SQLang 两种语言的解析。
+该文件实现了一个并行分词类 `ParallelTokenizer`，用于解析结构化数据。它依赖于模块 `python_structured` 和 `sqlang_structured`，用于解析不同类型的数据。该类支持 Python 和 SQLang 两种语言的解析。
 
 #### 2. 导入依赖库
 该文件导入了以下依赖库：
